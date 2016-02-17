@@ -1,20 +1,17 @@
 package com.diffey.view.rxzhihu.ui.fragment;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.adapter.MainMenuAdapter;
 import com.diffey.view.rxzhihu.bean.MenuItem;
-import com.diffey.view.rxzhihu.ui.activity.SettingActivity;
 import com.diffey.view.rxzhihu.util.IntentUtils;
 
 import java.util.ArrayList;
@@ -46,24 +43,16 @@ public class MainMenuFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mainMenuList.setAdapter(new MainMenuAdapter(getActivity(), getMenuList()));
-        mainMenuList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        IntentUtils.toTRClientActivity(getActivity());
-                        break;
-                    default:
-                        break;
-                }
+        mainMenuList.setOnItemClickListener((parent, view1, position, id) -> {
+            switch (position) {
+                case 0:
+                    IntentUtils.toTRClientActivity(getActivity());
+                    break;
+                default:
+                    break;
             }
         });
-        mainMenuLlSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), SettingActivity.class));
-            }
-        });
+        mainMenuLlSetting.setOnClickListener(v -> IntentUtils.toSettingActivity(v.getContext()));
     }
 
     private List<MenuItem> getMenuList() {

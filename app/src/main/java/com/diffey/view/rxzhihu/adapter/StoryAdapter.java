@@ -14,12 +14,10 @@ import java.util.ArrayList;
  * Created by diff on 2016/2/5.
  */
 public class StoryAdapter extends FragmentPagerAdapter {
-    private int curPos;
     private ArrayList<StoriesEntity> storiesEntities;
 
-    public StoryAdapter(FragmentManager fm, int pos, ArrayList<StoriesEntity> storiesEntities) {
+    public StoryAdapter(FragmentManager fm, ArrayList<StoriesEntity> storiesEntities) {
         super(fm);
-        this.curPos = pos;
         this.storiesEntities = storiesEntities;
     }
 

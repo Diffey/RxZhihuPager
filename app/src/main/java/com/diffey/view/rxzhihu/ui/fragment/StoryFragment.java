@@ -13,7 +13,6 @@ import android.widget.RelativeLayout;
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.api.ZhihuApi;
 import com.diffey.view.rxzhihu.api.ZhihuService;
-import com.diffey.view.rxzhihu.bean.StoryDetailsEntity;
 import com.diffey.view.rxzhihu.util.HtmlUtils;
 import com.diffey.view.rxzhihu.util.ViewUtils;
 import com.orhanobut.logger.Logger;
@@ -21,8 +20,6 @@ import com.orhanobut.logger.Logger;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -77,24 +74,9 @@ public class StoryFragment extends Fragment {
         ZhihuApi service = ZhihuService.createZhihuService();
         service.getNewsDetails(curId).observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
-                .map(new Func1<StoryDetailsEntity, String>() {
-                    @Override
-                    public String call(StoryDetailsEntity storyDetailsEntity) {
-                        return HtmlUtils.structHtml(storyDetailsEntity.getBody(), storyDetailsEntity.getCss());
-                    }
-                })
+                .map(storyDetailsEntity -> HtmlUtils.structHtml(storyDetailsEntity.getBody(), storyDetailsEntity.getCss()))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        webShowData(s);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        handlerFailure();
-                    }
-                });
+                .subscribe(s -> webShowData(s), throwable -> handlerFailure());
 
     }
 

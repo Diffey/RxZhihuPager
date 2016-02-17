@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.diffey.view.rxzhihu.bean.StoriesEntity;
+import com.diffey.view.rxzhihu.ui.activity.SettingActivity;
 import com.diffey.view.rxzhihu.ui.activity.StoryActivity;
 import com.diffey.view.rxzhihu.ui.activity.TRClientActivity;
 
@@ -23,8 +24,11 @@ public class IntentUtils {
     }
 
     public static void toTRClientActivity(Context context) {
-        Intent intent = new Intent(context, TRClientActivity.class);
-        context.startActivity(intent);
+        context.startActivity(new Intent(context, TRClientActivity.class));
+    }
+
+    public static void toSettingActivity(Context context) {
+        context.startActivity(new Intent(context, SettingActivity.class));
     }
 
     public static void toBrowserView(Context context, String url) {

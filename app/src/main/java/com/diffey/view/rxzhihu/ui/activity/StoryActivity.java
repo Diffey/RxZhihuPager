@@ -3,7 +3,6 @@ package com.diffey.view.rxzhihu.ui.activity;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.adapter.StoryAdapter;
@@ -47,19 +46,14 @@ public class StoryActivity extends SimpleActivity {
         ButterKnife.bind(this);
         initToolBar();
 
-        storyViewpager.setAdapter(new StoryAdapter(getSupportFragmentManager(), 0, arrayList));
+        storyViewpager.setAdapter(new StoryAdapter(getSupportFragmentManager(), arrayList));
         storyViewpager.setCurrentItem(curPos);
     }
 
     private void initToolBar() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_actionbar_back);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 
     @Override

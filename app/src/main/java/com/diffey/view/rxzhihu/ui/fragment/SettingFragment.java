@@ -4,10 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.contant.UrlContant;
@@ -54,19 +52,11 @@ public class SettingFragment extends PreferenceFragment implements Preference.On
                 .content(R.string.person_info)
                 .positiveText("GitHub")
                 .negativeText("简书")
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        IntentUtils.toBrowserView(getActivity(), UrlContant.URL_DEV_GITHUB);
-                        dialog.dismiss();
-                    }
+                .onPositive((dialog1, which) -> {
+                    IntentUtils.toBrowserView(getActivity(), UrlContant.URL_DEV_GITHUB);
+                    dialog1.dismiss();
                 })
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        IntentUtils.toBrowserView(getActivity(), UrlContant.URL_DEV_JIANSHU);
-                    }
-                })
+                .onNegative((dialog1, which) -> IntentUtils.toBrowserView(getActivity(), UrlContant.URL_DEV_JIANSHU))
                 .build();
         dialog.show();
     }

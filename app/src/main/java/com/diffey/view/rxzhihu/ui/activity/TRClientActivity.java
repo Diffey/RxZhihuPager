@@ -2,7 +2,6 @@ package com.diffey.view.rxzhihu.ui.activity;
 
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -62,12 +61,7 @@ public class TRClientActivity extends SimpleActivity {
         toolbar.setTitle("小er");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_actionbar_back);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 
     @Override
@@ -80,17 +74,14 @@ public class TRClientActivity extends SimpleActivity {
     @Override
     protected void initListener() {
         super.initListener();
-        trcBtnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String str = trcEdit.getText().toString();
-                if (TextUtils.isEmpty(str)) {
-                    return;
-                }
-                addData(new ChatBean(TRClientAdapter.TYPE_USER, str));
-                trcEdit.setText("");
-                gainChat(str);
+        trcBtnSend.setOnClickListener(v -> {
+            String str = trcEdit.getText().toString();
+            if (TextUtils.isEmpty(str)) {
+                return;
             }
+            addData(new ChatBean(TRClientAdapter.TYPE_USER, str));
+            trcEdit.setText("");
+            gainChat(str);
         });
     }
 

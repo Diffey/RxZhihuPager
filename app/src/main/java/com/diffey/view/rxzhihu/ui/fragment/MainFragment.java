@@ -35,8 +35,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -144,25 +142,9 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
         service.getLastestNews()
                 .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
-                .map(new Func1<NewsEntity, NewsEntity>() {
-                    @Override
-                    public NewsEntity call(NewsEntity newsEntity) {
-                        changeReadState(newsEntity);
-                        return newsEntity;
-                    }
-                })
+                .map(newsEntity -> changeReadState(newsEntity))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<NewsEntity>() {
-                    @Override
-                    public void call(NewsEntity newsEntity) {
-                        handlerSuccess(newsEntity, true);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        handlerFailure(true);
-                    }
-                });
+                .subscribe(newsEntity1 -> handlerSuccess(newsEntity1, true), throwable -> handlerFailure(true));
     }
 
     /**
@@ -170,7 +152,7 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
      *
      * @param newsEntity
      */
-    private void changeReadState(NewsEntity newsEntity) {
+    private NewsEntity changeReadState(NewsEntity newsEntity) {
         NewDao dao = new NewDao(mActivity);
         List<NewBean> beanList = dao.getAllNewBeans();
         for (StoriesEntity entity : newsEntity.getStories()) {
@@ -180,6 +162,7 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
                 }
             }
         }
+        return newsEntity;
     }
 
     private void loadBeforeData(String id) {
@@ -187,25 +170,9 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
         service.getBeforeNews(id)
                 .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
-                .map(new Func1<NewsEntity, NewsEntity>() {
-                    @Override
-                    public NewsEntity call(NewsEntity newsEntity) {
-                        changeReadState(newsEntity);
-                        return newsEntity;
-                    }
-                })
+                .map(newsEntity -> changeReadState(newsEntity))
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<NewsEntity>() {
-                    @Override
-                    public void call(NewsEntity newsEntity) {
-                        handlerSuccess(newsEntity, false);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        handlerFailure(false);
-                    }
-                });
+                .subscribe(newsEntity1 -> handlerSuccess(newsEntity1, false), throwable -> handlerFailure(false));
     }
 
     private void handlerSuccess(NewsEntity entity, boolean isRefresh) {

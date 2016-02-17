@@ -1,7 +1,6 @@
 package com.diffey.view.rxzhihu.ui.activity;
 
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.base.SimpleActivity;
@@ -30,11 +29,6 @@ public class SettingActivity extends SimpleActivity {
         toolbar.setTitle("设置");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_actionbar_back);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 }

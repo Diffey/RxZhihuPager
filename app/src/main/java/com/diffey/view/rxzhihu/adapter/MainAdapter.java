@@ -65,21 +65,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainHodler> {
             holder.itemMainImg.setImageURI(Uri.parse(imgs.get(0)));
         }
 
-        holder.itemMainRl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!sto.isRead()) {
-                    setTextColor(holder.itemMainTxtTitle, R.color.colorddd);
-                    sto.setRead(true);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            newDao.addNewBean(new NewBean(sto.getId()));
-                        }
-                    }).start();
-                }
-                IntentUtils.toStoryActivity(mContext, position, storiesList);
+        holder.itemMainRl.setOnClickListener(v -> {
+            if (!sto.isRead()) {
+                setTextColor(holder.itemMainTxtTitle, R.color.colorddd);
+                sto.setRead(true);
+                new Thread(() -> newDao.addNewBean(new NewBean(sto.getId()))).start();
             }
+            IntentUtils.toStoryActivity(mContext, position, storiesList);
         });
         startAnimator(holder.itemMainCard, position);
     }
