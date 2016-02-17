@@ -1,0 +1,25 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.diffey.view.rxzhihu.ui.fragment.MainFragment">
+
+    <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
+        android:id="@+id/main_wsrefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.diffey.view.rxzhihu.view.AutoLoadRecylerView
+            android:id="@+id/main_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+        </com.diffey.view.rxzhihu.view.AutoLoadRecylerView>
+    </jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+    <include layout="@layout/common_loading" />
+
+</FrameLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="基本设置" >
+        <Preference
+            android:key="about_dev"
+            android:title="关于开发者" />
+        <Preference
+            android:key="app_version"
+            android:title="版本:" />
+    </PreferenceCategory>
+</PreferenceScreen>

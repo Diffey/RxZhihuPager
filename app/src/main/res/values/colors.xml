@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryBg">#f1eeee</color>
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorActionBarTitle">#FFFFFF</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorfff">#FFFFFF</color>
+    <color name="coloreee">#EEEEEE</color>
+
+    <color name="color333">#333333</color>
+    <color name="color666">#666666</color>
+    <color name="color999">#999999</color>
+    <color name="colorccc">#cccccc</color>
+    <color name="colorddd">#DDDDDD</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="color88ddd">#88DDDDDD</color>
+
+    <color name="color88dddd0b">#88dddd0b</color>
+    <color name="colord630d984">#d630d984</color>
+</resources>
