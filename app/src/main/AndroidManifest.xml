@@ -24,7 +24,8 @@
             android:name="com.diffey.view.rxzhihu.ui.activity.StoryActivity"
             android:screenOrientation="portrait" />
         <activity android:name="com.diffey.view.rxzhihu.ui.activity.SettingActivity" />
-        <activity android:name="com.diffey.view.rxzhihu.ui.activity.TRClientActivity"></activity>
+        <activity
+            android:name="com.diffey.view.rxzhihu.ui.activity.TRClientActivity"/>
     </application>
 
 </manifest>

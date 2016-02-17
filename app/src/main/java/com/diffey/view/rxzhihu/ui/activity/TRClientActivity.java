@@ -87,8 +87,7 @@ public class TRClientActivity extends SimpleActivity {
                 if (TextUtils.isEmpty(str)) {
                     return;
                 }
-                trClientAdapter.addData(new ChatBean(TRClientAdapter.TYPE_USER, str));
-                trcList.setSelection(trClientAdapter.getCount());
+                addData(new ChatBean(TRClientAdapter.TYPE_USER, str));
                 trcEdit.setText("");
                 gainChat(str);
             }
@@ -108,14 +107,19 @@ public class TRClientActivity extends SimpleActivity {
                     } else {
                         str = entity.getText();
                     }
-                    trClientAdapter.addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, str));
+                    addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, str));
                 }
             }
 
             @Override
             public void onFailure(Call<TREntity> call, Throwable t) {
-                trClientAdapter.addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, Contant.TRC_ROBOT_FAILED));
+                addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, Contant.TRC_ROBOT_FAILED));
             }
         });
+    }
+
+    private void addData(ChatBean chatBean) {
+        trClientAdapter.addData(chatBean);
+        trcList.setSelection(trClientAdapter.getCount());
     }
 }
