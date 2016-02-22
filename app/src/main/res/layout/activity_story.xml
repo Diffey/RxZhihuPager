@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorPrimary"
     tools:context="com.diffey.view.rxzhihu.ui.activity.StoryActivity">
 
     <include layout="@layout/common_toolbar" />

@@ -58,6 +58,9 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
     private MainAdapter mainAdapter;
     private String curDate;
 
+    private NewDao dao;
+    private List<NewBean> beanList;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,8 +156,8 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
      * @param newsEntity
      */
     private NewsEntity changeReadState(NewsEntity newsEntity) {
-        NewDao dao = new NewDao(mActivity);
-        List<NewBean> beanList = dao.getAllNewBeans();
+        dao = new NewDao(mActivity);
+        beanList = dao.getAllNewBeans();
         for (StoriesEntity entity : newsEntity.getStories()) {
             for (NewBean bean : beanList) {
                 if (entity.getId() == bean.getId()) {
@@ -178,6 +181,7 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
     private void handlerSuccess(NewsEntity entity, boolean isRefresh) {
         ViewUtils.setViewVisibility(commonLoading, false);
         ViewUtils.setViewVisibility(commonError, false);
+        ViewUtils.setViewVisibility(mainWsrefresh, true);
         curDate = entity.getDate();
         stopLoadStatus(isRefresh);
         chageListDatas(isRefresh, entity.getStories());

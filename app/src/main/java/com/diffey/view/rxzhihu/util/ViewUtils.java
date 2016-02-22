@@ -12,9 +12,13 @@ public class ViewUtils {
             return;
         }
         if (visibility) {
-            view.setVisibility(View.VISIBLE);
+            if (view.getVisibility() != View.VISIBLE) {
+                view.setVisibility(View.VISIBLE);
+            }
         } else {
-            view.setVisibility(View.GONE);
+            if (view.getVisibility() == View.VISIBLE) {
+                view.setVisibility(View.GONE);
+            }
         }
     }
 }

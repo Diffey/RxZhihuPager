@@ -1,6 +1,7 @@
 package com.diffey.view.rxzhihu.util;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 /**
  * Gson封装类
@@ -37,6 +38,11 @@ public class GsonUtils {
     public static <T> T fromJson(String json, Class<T> clazz) {
         checkGson();
         return gson.fromJson(json, clazz);
+    }
+
+    public static <T> T fromJson(String json, TypeToken<T> token) {
+        checkGson();
+        return gson.fromJson(json, token.getType());
     }
 
     private static void checkGson() {

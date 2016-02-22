@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name="com.diffey.view.rxzhihu.ui.activity.MainActivity"
-            android:configChanges="screenSize|orientation">
+            android:configChanges="screenSize|orientation"
+            android:theme="@style/AppTheme.TranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,10 +23,10 @@
         </activity>
         <activity
             android:name="com.diffey.view.rxzhihu.ui.activity.StoryActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TranslucentTheme" />
         <activity android:name="com.diffey.view.rxzhihu.ui.activity.SettingActivity" />
-        <activity
-            android:name="com.diffey.view.rxzhihu.ui.activity.TRClientActivity"/>
+        <activity android:name="com.diffey.view.rxzhihu.ui.activity.TRClientActivity" />
     </application>
 
 </manifest>

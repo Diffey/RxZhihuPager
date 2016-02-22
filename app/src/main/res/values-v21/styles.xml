@@ -40,8 +40,16 @@
     </style>
 
     <style name="AppTheme.TranslucentTheme" parent="AppTheme.NoActionBar">
-
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--Android 5以上可以设置状态栏颜色-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <!--<style name="ColorTranslucentTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!--<item name="android:windowTranslucentStatus">false</item>-->
+    <!--<item name="android:windowTranslucentNavigation">true</item>-->
+    <!--<item name="android:statusBarColor">@color/color_31c27c</item>-->
+    <!--</style>-->
 
 </resources>
